@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop • Ketts Stores</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body data-page="shop" class="min-h-screen bg-slate-50 text-slate-900">
+  <header class="header-nav sticky top-0 z-50 border-b border-slate-200">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+      <a href="index.html" class="text-2xl font-bold tracking-[0.12em] text-slate-900">KETTS STORES</a>
+      <nav class="hidden gap-6 text-sm font-medium md:flex">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="shop.html" class="nav-link">Shop</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+      <div class="flex items-center gap-4">
+        <button onclick="openCart()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium shadow-sm hover:bg-slate-50">
+          🛒 <span id="cart-count">0</span>
+        </button>
+        <button onclick="openCart()" class="btn-primary rounded-full px-5 py-3 text-sm font-semibold">Checkout</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-7xl px-6 py-10">
+    <section class="grid gap-8 lg:grid-cols-[1.4fr_0.6fr]">
+      <div class="rounded-[2rem] bg-white p-10 shadow-card">
+        <span class="badge inline-flex rounded-full px-4 py-2 text-sm font-semibold">Shop</span>
+        <h1 class="mt-6 text-4xl font-bold tracking-tight sm:text-5xl">Browse the latest collections for home, kitchen and footwear.</h1>
+        <p class="mt-4 max-w-2xl text-slate-600">Fast delivery across Lagos, secure checkout and quick customer support. Filter by category, price and product name.</p>
+
+        <div class="mt-8 grid gap-4 sm:grid-cols-2">
+          <div class="rounded-3xl bg-slate-50 p-6">
+            <p class="text-sm uppercase tracking-[0.25em] text-slate-400">Best value</p>
+            <p class="mt-3 text-3xl font-semibold text-slate-900">Affordable prices</p>
+          </div>
+          <div class="rounded-3xl bg-slate-50 p-6">
+            <p class="text-sm uppercase tracking-[0.25em] text-slate-400">Fast delivery</p>
+            <p class="mt-3 text-3xl font-semibold text-slate-900">Same day dispatch</p>
+          </div>
+        </div>
+      </div>
+
+      <aside class="space-y-6 rounded-[2rem] bg-emerald-700 p-8 text-white shadow-card">
+        <h2 class="text-3xl font-bold">Featured Categories</h2>
+        <p class="mt-4 text-slate-100">Shop shoes, kitchen essentials and household favorites in one place.</p>
+
+        <div class="grid gap-4">
+          <button onclick="filterCategory('All')" class="category-pill rounded-3xl border border-white/20 px-5 py-3 text-left text-sm font-semibold uppercase">All</button>
+          <button onclick="filterCategory('Shoes')" class="category-pill rounded-3xl border border-white/20 px-5 py-3 text-left text-sm font-semibold uppercase">Shoes</button>
+          <button onclick="filterCategory('Kitchen')" class="category-pill rounded-3xl border border-white/20 px-5 py-3 text-left text-sm font-semibold uppercase">Kitchen</button>
+          <button onclick="filterCategory('Household')" class="category-pill rounded-3xl border border-white/20 px-5 py-3 text-left text-sm font-semibold uppercase">Household</button>
+        </div>
+      </aside>
+    </section>
+
+    <section class="mt-10 grid gap-6 lg:grid-cols-[1fr_320px]">
+      <div class="rounded-[2rem] bg-white p-6 shadow-card">
+        <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+          <div>
+            <p class="text-sm text-slate-500">Showing results for</p>
+            <h2 class="text-2xl font-bold">Fresh Picks</h2>
+          </div>
+          <div class="grid gap-4 sm:grid-cols-3">
+            <input id="searchInput" type="search" aria-label="Search products" placeholder="Search products" class="form-input w-full rounded-3xl px-4 py-3 shadow-sm">
+            <select id="sortSelect" class="form-input min-w-[10rem] rounded-3xl px-4 py-3 shadow-sm">
+              <option value="default">Recommended</option>
+              <option value="low">Price: Low to High</option>
+              <option value="high">Price: High to Low</option>
+              <option value="name">Name A-Z</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="mt-6 flex items-center gap-4">
+          <label class="text-sm font-medium text-slate-600">Max price:</label>
+          <input id="priceRange" type="range" min="5000" max="45000" value="45000" class="w-full" step="500">
+          <span class="whitespace-nowrap text-sm font-semibold text-slate-900">₦<span id="priceValue">45000</span></span>
+        </div>
+
+        <div id="productGrid" class="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3"></div>
+      </div>
+
+      <aside class="space-y-6 rounded-[2rem] bg-white p-6 shadow-card">
+        <div class="rounded-3xl bg-emerald-50 p-6">
+          <h3 class="text-lg font-semibold">Cart summary</h3>
+          <p class="mt-3 text-slate-600">Track items as you shop and checkout with ease.</p>
+        </div>
+        <div class="rounded-3xl bg-slate-50 p-6">
+          <h3 class="text-lg font-semibold">Need help?</h3>
+          <p class="mt-3 text-slate-600">Reach our support team via phone or WhatsApp 24/7.</p>
+          <p class="mt-4 text-sm font-semibold text-slate-900">+234 905 641 2305</p>
+          <a href="https://wa.me/2349056412305" target="_blank" class="mt-3 inline-flex text-sm font-semibold text-emerald-700 hover:text-emerald-900">Open WhatsApp chat</a>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <div id="cart-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center modal-backdrop px-4 py-10">
+    <div class="w-full max-w-3xl rounded-[2rem] bg-white p-6 shadow-2xl">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-4">
+        <h2 class="text-2xl font-bold">Shopping Cart</h2>
+        <button onclick="closeCart()" class="text-3xl text-slate-400">×</button>
+      </div>
+      <div id="cart-items" class="max-h-[42rem] overflow-auto py-6"></div>
+      <div class="flex flex-col gap-4 border-t border-slate-200 pt-4 lg:flex-row lg:items-center lg:justify-between">
+        <p class="text-xl font-semibold">Total: ₦<span id="cart-total">0</span></p>
+        <button onclick="openCheckout()" class="btn-primary rounded-3xl px-6 py-3 text-sm font-semibold">Proceed to checkout</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="checkout-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center modal-backdrop px-4 py-10">
+    <div class="w-full max-w-2xl rounded-[2rem] bg-white p-8 shadow-2xl">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-4">
+        <h2 class="text-2xl font-bold">Delivery Details</h2>
+        <button onclick="closeModal('checkout-modal')" class="text-3xl text-slate-400">×</button>
+      </div>
+      <div class="mt-6 grid gap-4 sm:grid-cols-2">
+        <label class="block">
+          <span class="text-sm font-semibold text-slate-700">Full name</span>
+          <input id="customer-name" type="text" class="form-input mt-2 w-full rounded-3xl px-4 py-3" placeholder="Your name">
+        </label>
+        <label class="block">
+          <span class="text-sm font-semibold text-slate-700">Phone</span>
+          <input id="customer-phone" type="tel" class="form-input mt-2 w-full rounded-3xl px-4 py-3" placeholder="09056412305">
+        </label>
+      </div>
+      <div class="mt-6 grid gap-4 sm:grid-cols-2">
+        <label class="block">
+          <span class="text-sm font-semibold text-slate-700">Email</span>
+          <input id="customer-email" type="email" class="form-input mt-2 w-full rounded-3xl px-4 py-3" placeholder="you@example.com">
+        </label>
+        <label class="block">
+          <span class="text-sm font-semibold text-slate-700">City / Area</span>
+          <input id="customer-city" type="text" class="form-input mt-2 w-full rounded-3xl px-4 py-3" placeholder="Lagos, Ikeja, etc.">
+        </label>
+      </div>
+      <label class="block mt-4">
+        <span class="text-sm font-semibold text-slate-700">Delivery address</span>
+        <textarea id="customer-address" rows="4" class="form-textarea mt-2 w-full rounded-3xl px-4 py-3" placeholder="Street, building, city"></textarea>
+      </label>
+      <div class="mt-6 grid gap-4 sm:grid-cols-2">
+        <label class="block">
+          <span class="text-sm font-semibold text-slate-700">Nearest landmark</span>
+          <input id="customer-landmark" type="text" class="form-input mt-2 w-full rounded-3xl px-4 py-3" placeholder="Landmark or nearest bus stop">
+        </label>
+        <label class="block">
+          <span class="text-sm font-semibold text-slate-700">Delivery notes</span>
+          <input id="customer-notes" type="text" class="form-input mt-2 w-full rounded-3xl px-4 py-3" placeholder="Special instructions for delivery">
+        </label>
+      </div>
+      <div class="mt-6 flex flex-col gap-4 sm:flex-row">
+        <button onclick="closeModal('checkout-modal')" class="w-full rounded-3xl border border-slate-300 px-5 py-3 text-sm font-semibold">Cancel</button>
+        <button onclick="submitOrder()" class="btn-primary w-full rounded-3xl px-5 py-3 text-sm font-semibold">Send order via WhatsApp</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="mt-16 border-t border-slate-200 bg-slate-50 py-8">
+    <div class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 text-sm text-slate-600 md:flex-row">
+      <p>© 2026 Ketts Stores — Made for smarter shopping.</p>
+      <p>Deliveries across Lagos and major Nigerian cities.</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
