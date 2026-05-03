@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About • Ketts Stores</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      color-scheme: dark;
+      font-family: Inter, system-ui, sans-serif;
+    }
+
+    body {
+      background: #f8fafc;
+      color: #0f172a;
+    }
+
+    .header-nav {
+      background: rgba(248, 250, 252, 0.98);
+      backdrop-filter: blur(16px);
+    }
+
+    .header-nav a.active {
+      color: #065f46;
+      font-weight: 700;
+    }
+
+    .nav-link {
+      color: #475569;
+      transition: color 0.2s ease;
+    }
+
+    .nav-link:hover {
+      color: #0f172a;
+    }
+
+    .btn-primary {
+      background: #065f46;
+      color: #ffffff;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary:hover {
+      background: #054f36;
+    }
+
+    .card {
+      box-shadow: 0 28px 70px rgba(15, 23, 42, 0.12);
+    }
+
+    .badge {
+      background: rgba(16, 185, 129, 0.16);
+      color: #065f46;
+    }
+
+    .form-input,
+    .form-textarea {
+      border: 1px solid #e5e7eb;
+    }
+
+    .form-input:focus,
+    .form-textarea:focus {
+      border-color: #10b981;
+      box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.15);
+      outline: none;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-slate-50 text-slate-900">
+  <header class="header-nav sticky top-0 z-50 border-b border-slate-200">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 flex-col md:flex-row gap-4 md:gap-0">
+      <a href="index.html" class="text-2xl font-bold tracking-[0.12em] text-slate-900">KETTS STORES</a>
+      <nav class="flex gap-6 text-sm font-medium flex-col md:flex-row">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="shop.html" class="nav-link">Shop</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-7xl px-6 py-16">
+    <section class="grid gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+      <div>
+        <span class="badge inline-flex rounded-full px-4 py-2 text-sm font-semibold">About Us</span>
+        <h1 class="mt-6 text-4xl font-bold tracking-tight sm:text-5xl">Ketts Stores is your everyday online destination for smart shopping.</h1>
+        <p class="mt-6 max-w-3xl text-lg text-slate-600">We deliver premium products across fashion, kitchenware and household essentials from our Lagos hub to customers throughout Nigeria. Our goal is to make every order feel personal, easy and modern.</p>
+        <div class="mt-10 grid gap-6 sm:grid-cols-2">
+          <div class="rounded-3xl bg-white p-8 shadow-card">
+            <p class="text-3xl font-bold text-emerald-700">8,000+</p>
+            <p class="mt-3 text-slate-600">Happy customers</p>
+          </div>
+          <div class="rounded-3xl bg-white p-8 shadow-card">
+            <p class="text-3xl font-bold text-emerald-700">200+</p>
+            <p class="mt-3 text-slate-600">Quality products</p>
+          </div>
+        </div>
+      </div>
+      <img src="4198c62f-5dff-4fed-b676-3a124dfab796 (1).jpeg" alt="About Ketts Stores" class="rounded-[2rem] object-cover shadow-card">
+    </section>
+
+    <section class="mt-16 grid gap-10 lg:grid-cols-3">
+      <article class="rounded-[2rem] bg-white p-8 shadow-card">
+        <h2 class="text-xl font-semibold">Our Promise</h2>
+        <p class="mt-4 text-slate-600">Trusted quality, fast delivery and transparent pricing are at the heart of every order.</p>
+      </article>
+      <article class="rounded-[2rem] bg-white p-8 shadow-card">
+        <h2 class="text-xl font-semibold">How it works</h2>
+        <p class="mt-4 text-slate-600">Browse products, add favorites, checkout instantly and receive updates on your delivery.</p>
+      </article>
+      <article class="rounded-[2rem] bg-white p-8 shadow-card">
+        <h2 class="text-xl font-semibold">Customer support</h2>
+        <p class="mt-4 text-slate-600">Need help? Our support team is available on WhatsApp and email to answer every question.</p>
+      </article>
+    </section>
+
+    <section class="mt-16 rounded-[2rem] bg-white p-10 shadow-card">
+      <h2 class="text-3xl font-bold">Why customers choose Ketts Stores</h2>
+      <div class="mt-10 grid gap-6 lg:grid-cols-3">
+        <div class="rounded-3xl bg-slate-50 p-6">
+          <p class="font-semibold">Modern shopping</p>
+          <p class="mt-3 text-slate-600">A clean, easy website with powerful filters and fast checkout.</p>
+        </div>
+        <div class="rounded-3xl bg-slate-50 p-6">
+          <p class="font-semibold">Secure payment</p>
+          <p class="mt-3 text-slate-600">Order confidently with our transparent pricing and secure WhatsApp checkout flow.</p>
+        </div>
+        <div class="rounded-3xl bg-slate-50 p-6">
+          <p class="font-semibold">Local delivery</p>
+          <p class="mt-3 text-slate-600">Reliable delivery across Lagos, with fast order processing.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-200 bg-slate-50 py-8 text-center text-sm text-slate-600">
+    © 2026 Ketts Stores • Built for modern shopping.
+  </footer>
+
+  <script>
+    document.querySelectorAll('.nav-link').forEach(link => {
+      const href = link.getAttribute('href');
+      if (window.location.pathname.endsWith(href) || (href === 'index.html' && window.location.pathname.endsWith('/'))) {
+        link.classList.add('active');
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ketts Stores • Modern Shopping</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      color-scheme: dark;
+      font-family: Inter, system-ui, sans-serif;
+    }
+
+    body {
+      background: #d1d9e4;
+      color: #0f172a;
+    }
+
+    .header-nav {
+      background: rgba(248, 250, 252, 0.98);
+      backdrop-filter: blur(16px);
+    }
+
+    .header-nav a.active {
+      color: #065f46;
+      font-weight: 700;
+    }
+
+    .btn-primary {
+      background: #065f46;
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background: #054f36;
+    }
+
+    .card {
+      box-shadow: 0 28px 70px rgba(15, 23, 42, 0.12);
+    }
+
+    .hero-banner {
+      background: linear-gradient(180deg, rgba(6, 78, 59, 0.82) 0%, rgba(6, 78, 59, 0.94) 100%), url('file:///c:/Users/USER/OneDrive/Desktop/ketts-stores/assets/images/hero-banner.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .badge {
+      background: rgba(5, 150, 105, 0.18);
+      color: #065f46;
+    }
+
+    .category-pill {
+      transition: all 0.25s ease;
+    }
+
+    .category-pill.active,
+    .category-pill:hover {
+      background: #d1fae5;
+      color: #065f46;
+    }
+
+    .product-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
+    }
+
+    .modal-backdrop {
+      background: rgba(15, 23, 42, 0.72);
+    }
+
+    .form-input,
+    .form-textarea {
+      border: 1px solid #e5e7eb;
+    }
+
+    .form-input:focus,
+    .form-textarea:focus {
+      border-color: #10b981;
+      box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.15);
+    }
+
+    .footer-link:hover {
+      color: #10b981;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+      border: 0;
+    }
+  </style>
+</head>
+<body data-page="home" class="min-h-screen bg-slate-50 text-slate-900">
+  <header class="header-nav sticky top-0 z-50 border-b border-slate-200">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 flex-col md:flex-row gap-4 md:gap-0">
+      <a href="index.html" class="text-2xl font-bold tracking-[0.14em] text-slate-900">KETTS STORES</a>
+      <nav class="flex gap-6 text-sm font-medium flex-col md:flex-row">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="shop.html" class="nav-link">Shop</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+      <div class="flex items-center gap-4">
+        <button onclick="openCart()" class="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium shadow-sm hover:bg-slate-50">
+          🛒 <span id="cart-count">0</span>
+        </button>
+        <a href="#shop" class="btn-primary rounded-full px-6 py-3 text-sm font-semibold inline-flex">Start shopping</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-7xl px-6 py-10">
+    <section class="hero-banner rounded-[2.5rem] bg-cover bg-center px-8 py-20 text-white shadow-card sm:px-12 lg:px-16">
+      <div class="max-w-3xl">
+        <span class="badge inline-flex rounded-full px-4 py-2 text-sm font-semibold">KETTS STORES</span>
+        <h1 class="mt-8 text-5xl font-bold tracking-tight sm:text-6xl">Shop better with Nigeria's modern marketplace.</h1>
+        <p class="mt-6 max-w-2xl text-lg leading-8 text-slate-100/90">Browse curated products across shoes, kitchenware and home essentials. Fast checkout, local delivery and a polished shopping experience.</p>
+        <div class="mt-10 flex flex-col gap-4 sm:flex-row">
+          <a href="shop.html" class="btn-primary inline-flex items-center justify-center rounded-full px-8 py-4 text-base font-semibold shadow-lg">Browse products</a>
+          <a href="contact.html" class="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/10 px-8 py-4 text-base font-semibold text-white hover:bg-white/20">Contact support</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="mt-12 grid gap-6 lg:grid-cols-3">
+      <article class="rounded-[2rem] bg-white p-8 shadow-card">
+        <p class="text-sm uppercase tracking-[0.25em] text-emerald-700">Fast delivery</p>
+        <h2 class="mt-4 text-2xl font-bold">Same-day dispatch</h2>
+        <p class="mt-4 text-slate-600">Orders placed before noon are prepared quickly and delivered across Lagos.</p>
+      </article>
+      <article class="rounded-[2rem] bg-white p-8 shadow-card">
+        <p class="text-sm uppercase tracking-[0.25em] text-emerald-700">Secure payments</p>
+        <h2 class="mt-4 text-2xl font-bold">WhatsApp checkout</h2>
+        <p class="mt-4 text-slate-600">Complete orders through WhatsApp for a secure, familiar payment workflow.</p>
+      </article>
+      <article class="rounded-[2rem] bg-white p-8 shadow-card">
+        <p class="text-sm uppercase tracking-[0.25em] text-emerald-700">Top quality</p>
+        <h2 class="mt-4 text-2xl font-bold">Curated products</h2>
+        <p class="mt-4 text-slate-600">We source durable essentials across footwear, kitchen and household categories.</p>
+      </article>
+    </section>
+
+    <section id="shop" class="mt-16 grid gap-10 lg:grid-cols-2">
+      <div class="rounded-[2rem] bg-white p-10 shadow-card">
+        <div class="flex items-center gap-3 text-sm uppercase tracking-[0.2em] text-emerald-700">Featured categories</div>
+        <div class="mt-8 grid gap-6">
+          <div class="group overflow-hidden rounded-[1.75rem] bg-slate-50 shadow-card transition hover:-translate-y-1">
+            <img src="01d955ea-ef91-4421-a520-dca6bd244d69.jpeg">
+            <div class="p-6">
+              <h3 class="text-2xl font-semibold">kitchen tray</h3>
+              <p class="mt-3 text-slate-600">Comfortable everyday shoes for work, walking and style.</p>
+            </div>
+          </div>
+          <div class="group overflow-hidden rounded-[1.75rem] bg-slate-50 shadow-card transition hover:-translate-y-1">
+            <img src="66b762a7-9e22-4e2d-a58e-03124d6b798f.jpeg" alt="Kitchen category" class="h-56 w-full object-cover">
+            <div class="p-6">
+              <h3 class="text-2xl font-semibold">Kitchen</h3>
+              <p class="mt-3 text-slate-600">Premium kitchen tools and home appliances for daily cooking.</p>
+            </div>
+          </div>
+          <div class="group overflow-hidden rounded-[1.75rem] bg-slate-50 shadow-card transition hover:-translate-y-1">
+            <img src="4198c62f-5dff-4fed-b676-3a124dfab796 (1).jpeg" alt="Household category" class="h-56 w-full object-cover">
+            <div class="p-6">
+              <h3 class="text-2xl font-semibold">Household</h3>
+              <p class="mt-3 text-slate-600">Stylish home essentials that make every room feel modern.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="rounded-[2rem] bg-white p-10 shadow-card">
+        <span class="badge inline-flex rounded-full px-4 py-2 text-sm font-semibold">KETTS STORES</span>
+        <h2 class="mt-6 text-3xl font-bold">Why customers choose us</h2>
+        <ul class="mt-8 space-y-5 text-slate-600">
+          <li class="flex gap-3"><span class="mt-1 inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-emerald-100 text-emerald-700">✓</span>Curated product selection with clear pricing.</li>
+          <li class="flex gap-3"><span class="mt-1 inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-emerald-100 text-emerald-700">✓</span>Modern website experience for fast browsing.</li>
+          <li class="flex gap-3"><span class="mt-1 inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-emerald-100 text-emerald-700">✓</span>Local support by phone and WhatsApp.</li>
+        </ul>
+        <div class="mt-10 flex flex-col gap-4 sm:flex-row">
+          <a href="shop.html" class="btn-primary rounded-full px-6 py-4 font-semibold">Explore the shop</a>
+          <a href="contact.html" class="rounded-full border border-slate-300 bg-white px-6 py-4 font-semibold text-slate-800 hover:bg-slate-50">Talk to support</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="mt-16 bg-white p-10 rounded-[2rem] shadow-card">
+      <div class="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
+        <div>
+          <p class="text-sm uppercase tracking-[0.25em] text-emerald-700">Latest deals</p>
+          <h2 class="mt-4 text-3xl font-bold">Fresh arrivals for home and lifestyle.</h2>
+        </div>
+        <a href="shop.html" class="btn-primary rounded-full px-6 py-4 text-sm font-semibold">View new arrivals</a>
+      </div>
+      <div class="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+        <div class="rounded-3xl bg-slate-50 p-6 text-center">
+          <img src="a7d6c331-9fb7-46bc-9d1c-4a069d44e568.jpeg" alt="Product 1" class="mx-auto h-40 w-40 rounded-[2rem] object-cover">
+          <p class="mt-5 text-lg font-semibold">Everyday sneakers</p>
+          <p class="mt-2 text-slate-600">₦25,000</p>
+          <button onclick="addToCart(1)" class="mt-4 btn-primary rounded-full px-4 py-2 text-sm font-semibold">Add to Cart</button>
+        </div>
+            <div class="rounded-3xl bg-slate-50 p-6 text-center">
+            <img src="98543ded-f1d4-451a-8570-44d140bcc4c1.jpeg" alt="Product 2" class="mx-auto h-40 w-40 rounded-[2rem] object-cover">
+          <p class="mt-5 text-lg font-semibold">Kitchen must-have</p>
+          <p class="mt-2 text-slate-600">₦32,000</p>
+          <button onclick="addToCart(2)" class="mt-4 btn-primary rounded-full px-4 py-2 text-sm font-semibold">Add to Cart</button>
+        </div>
+        <div class="rounded-3xl bg-slate-50 p-6 text-center">
+          <img src="4198c62f-5dff-4fed-b676-3a124dfab796 (1).jpeg" alt="Product 3" class="mx-auto h-40 w-40 rounded-[2rem] object-cover">
+          <p class="mt-5 text-lg font-semibold">Home decor set</p>
+          <p class="mt-2 text-slate-600">₦13,000</p>
+          <button onclick="addToCart(3)" class="mt-4 btn-primary rounded-full px-4 py-2 text-sm font-semibold">Add to Cart</button>
+        </div>
+        <div class="rounded-3xl bg-slate-50 p-6 text-center">
+          <img src="66b762a7-9e22-4e2d-a58e-03124d6b798f.jpeg" alt="Product 4" class="mx-auto h-40 w-40 rounded-[2rem] object-cover">
+          <p class="mt-5 text-lg font-semibold">Premium loafers</p>
+          <p class="mt-2 text-slate-600">₦42,000</p>
+          <button onclick="addToCart(4)" class="mt-4 btn-primary rounded-full px-4 py-2 text-sm font-semibold">Add to Cart</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="cart-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center modal-backdrop px-4 py-4 md:py-10">
+    <div class="w-full max-w-3xl rounded-[2rem] bg-white p-6 md:p-6 shadow-2xl max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-4">
+        <h2 class="text-2xl font-bold">Shopping Cart</h2>
+        <button onclick="closeCart()" class="text-3xl text-slate-400">×</button>
+      </div>
+      <div id="cart-items" class="max-h-[42rem] overflow-auto py-6"></div>
+      <div class="flex flex-col gap-4 border-t border-slate-200 pt-4 lg:flex-row lg:items-center lg:justify-between">
+        <p class="text-xl font-semibold">Total: ₦<span id="cart-total">0</span></p>
+        <button onclick="openCheckout()" class="btn-primary rounded-3xl px-6 py-3 text-sm font-semibold">Proceed to checkout</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="checkout-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center modal-backdrop px-4 py-4 md:py-10">
+    <div class="w-full max-w-2xl rounded-[2rem] bg-white p-6 md:p-8 shadow-2xl max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b border-slate-200 pb-4">
+        <h2 class="text-2xl font-bold">Delivery Details</h2>
+        <button onclick="closeModal('checkout-modal')" class="text-3xl text-slate-400">×</button>
+      </div>
+      <div class="mt-6 grid gap-4 sm:grid-cols-2">
+        <label class="block">
+          <span class="text-sm font-semibold text-slate-700">Full name</span>
+          <input id="customer-name" type="text" class="form-input mt-2 w-full rounded-3xl px-4 py-3" placeholder="Your name">
+        </label>
+        <label class="block">
+          <span class="text-sm font-semibold text-slate-700">Phone</span>
+          <input id="customer-phone" type="tel" class="form-input mt-2 w-full rounded-3xl px-4 py-3" placeholder="09056412305">
+        </label>
+      </div>
+      <div class="mt-6 grid gap-4 sm:grid-cols-2">
+        <label class="block">
+          <span class="text-sm font-semibold text-slate-700">Email</span>
+          <input id="customer-email" type="email" class="form-input mt-2 w-full rounded-3xl px-4 py-3" placeholder="you@example.com">
+        </label>
+        <label class="block">
+          <span class="text-sm font-semibold text-slate-700">City / Area</span>
+          <input id="customer-city" type="text" class="form-input mt-2 w-full rounded-3xl px-4 py-3" placeholder="Lagos, Ikeja, etc.">
+        </label>
+      </div>
+      <label class="block mt-4">
+        <span class="text-sm font-semibold text-slate-700">Delivery address</span>
+        <textarea id="customer-address" rows="4" class="form-textarea mt-2 w-full rounded-3xl px-4 py-3" placeholder="Street, building, city"></textarea>
+      </label>
+      <div class="mt-6 grid gap-4 sm:grid-cols-2">
+        <label class="block">
+          <span class="text-sm font-semibold text-slate-700">Nearest landmark</span>
+          <input id="customer-landmark" type="text" class="form-input mt-2 w-full rounded-3xl px-4 py-3" placeholder="Landmark or nearest bus stop">
+        </label>
+        <label class="block">
+          <span class="text-sm font-semibold text-slate-700">Delivery notes</span>
+          <input id="customer-notes" type="text" class="form-input mt-2 w-full rounded-3xl px-4 py-3" placeholder="Special instructions for delivery">
+        </label>
+      </div>
+      <div class="mt-6">
+        <label class="block">
+          <span class="text-sm font-semibold text-slate-700">Preferred delivery time</span>
+          <select id="delivery-time" class="form-input mt-2 w-full rounded-3xl px-4 py-3">
+            <option value="">Select time</option>
+            <option value="morning">Morning (9AM - 12PM)</option>
+            <option value="afternoon">Afternoon (12PM - 5PM)</option>
+            <option value="evening">Evening (5PM - 8PM)</option>
+          </select>
+        </label>
+      </div>
+      <div class="mt-6">
+        <label class="block">
+          <span class="text-sm font-semibold text-slate-700">Payment method</span>
+          <select id="payment-method" class="form-input mt-2 w-full rounded-3xl px-4 py-3">
+            <option value="">Select payment method</option>
+            <option value="cash">Cash on Delivery</option>
+            <option value="transfer">Bank Transfer</option>
+            <option value="card">Card Payment</option>
+          </select>
+        </label>
+      </div>
+      <div class="mt-6 flex flex-col gap-4 sm:flex-row">
+        <button onclick="closeModal('checkout-modal')" class="w-full rounded-3xl border border-slate-300 px-5 py-3 text-sm font-semibold">Cancel</button>
+        <button id="submit-order-btn" onclick="submitOrder()" class="btn-primary w-full rounded-3xl px-6 py-4 text-base font-semibold md:px-5 md:py-3 md:text-sm">Send order via WhatsApp</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="border-t border-slate-200 bg-slate-50 py-8 text-center text-sm text-slate-600">
+    <div class="mx-auto max-w-7xl px-6">© 2026 Ketts Stores • Built as a modern shopping storefront.</div>
+  </footer>
+
+  <script>
+    const pageBody = document.body;
+    const pageName = pageBody.dataset.page;
+
+    const products = [
+      {id: 1, name: 'Classic Running Shoes', price: 25000, category: 'Shoes', img: 'file:///c:/Users/USER/OneDrive/Desktop/ketts-stores/assets/images/product-1.jpg', sale: true},
+      {id: 2, name: 'Comfort Kitchen Set', price: 32000, category: 'Kitchen', img: 'file:///c:/Users/USER/OneDrive/Desktop/ketts-stores/assets/images/product-2.jpg', sale: false},
+      {id: 3, name: 'Modern Home Decor', price: 13000, category: 'Household', img: 'file:///c:/Users/USER/OneDrive/Desktop/ketts-stores/assets/images/product-3.jpg', sale: true},
+      {id: 4, name: 'Premium Leather Shoes', price: 42000, category: 'Shoes', img: 'file:///c:/Users/USER/OneDrive/Desktop/ketts-stores/assets/images/product-4.jpg', sale: false},
+      {id: 5, name: 'Compact Blender', price: 21000, category: 'Kitchen', img: 'file:///c:/Users/USER/OneDrive/Desktop/ketts-stores/assets/images/product-1.jpg', sale: false},
+      {id: 6, name: 'Stylish Storage Box', price: 9500, category: 'Household', img: 'file:///c:/Users/USER/OneDrive/Desktop/ketts-stores/assets/images/product-2.jpg', sale: false},
+      {id: 7, name: 'Weekend Slip-Ons', price: 18000, category: 'Shoes', img: 'file:///c:/Users/USER/OneDrive/Desktop/ketts-stores/assets/images/product-3.jpg', sale: true},
+      {id: 8, name: 'Smart Kitchen Knife Set', price: 28000, category: 'Kitchen', img: 'file:///c:/Users/USER/OneDrive/Desktop/ketts-stores/assets/images/product-4.jpg', sale: true},
+      {id: 9, name: 'Designer Handbag', price: 35000, category: 'Accessories', img: 'file:///c:/Users/USER/OneDrive/Desktop/ketts-stores/01d955ea-ef91-4421-a520-dca6bd244d69.jpeg', sale: false},
+      {id: 10, name: 'Wireless Earbuds', price: 15000, category: 'Electronics', img: 'file:///c:/Users/USER/OneDrive/Desktop/ketts-stores/4198c62f-5dff-4fed-b676-3a124dfab796 (1).jpeg', sale: true},
+      {id: 11, name: 'Smart Watch', price: 45000, category: 'Electronics', img: 'file:///c:/Users/USER/OneDrive/Desktop/ketts-stores/66b762a7-9e22-4e2d-a58e-03124d6b798f.jpeg', sale: false},
+      {id: 12, name: 'Yoga Mat', price: 12000, category: 'Fitness', img: 'file:///c:/Users/USER/OneDrive/Desktop/ketts-stores/91f4dfa3-4fc4-4d95-8c4d-2611d5df7eaf.jpeg', sale: true},
+      {id: 13, name: 'Coffee Maker', price: 25000, category: 'Kitchen', img: 'file:///c:/Users/USER/OneDrive/Desktop/ketts-stores/98543ded-f1d4-451a-8570-44d140bcc4c1.jpeg', sale: false},
+      {id: 14, name: 'LED Desk Lamp', price: 8000, category: 'Household', img: 'file:///c:/Users/USER/OneDrive/Desktop/ketts-stores/a7d6c331-9fb7-46bc-9d1c-4a069d44e568.jpeg', sale: true},
+      {id: 15, name: 'Portable Charger', price: 10000, category: 'Electronics', img: 'file:///c:/Users/USER/OneDrive/Desktop/ketts-stores/a9ee09b6-cfee-4b61-988a-590257c214b0.jpeg', sale: false},
+      {id: 16, name: 'Sunglasses', price: 18000, category: 'Accessories', img: 'file:///c:/Users/USER/OneDrive/Desktop/ketts-stores/dfb393de-9953-448a-91c1-cc57fce36fbc.jpeg', sale: true}
+    ];
+
+    let cart = JSON.parse(localStorage.getItem('kettsCart')) || [];
+    let wishlist = JSON.parse(localStorage.getItem('kettsWishlist')) || [];
+
+    function setActiveNav() {
+      const navLinks = document.querySelectorAll('.nav-link');
+      navLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        if (window.location.pathname.endsWith(href)) {
+          link.classList.add('active');
+        } else if (href === 'index.html' && window.location.pathname.endsWith('/')) {
+          link.classList.add('active');
+        }
+      });
+    }
+
+    function initShopPage() {
+      document.getElementById('searchInput').addEventListener('input', applyFilters);
+      document.getElementById('sortSelect').addEventListener('change', applyFilters);
+      document.getElementById('priceRange').addEventListener('input', applyFilters);
+      renderProducts(products);
+      applyFilters();
+    }
+
+    function renderProducts(list) {
+      const grid = document.getElementById('productGrid');
+      if (!grid) return;
+      grid.innerHTML = list.map(product => {
+        const displayPrice = product.sale ? Math.floor(product.price * 0.88) : product.price;
+        return `
+          <article class="product-card card overflow-hidden rounded-3xl bg-white">
+            <img src="${product.img}" alt="${product.name}" class="h-60 w-full object-cover">
+            <div class="p-6">
+              <div class="mb-3 flex items-center justify-between gap-3">
+                <span class="badge rounded-full px-3 py-1 text-sm font-semibold">${product.category}</span>
+                ${product.sale ? '<span class="text-sm font-semibold text-emerald-600">Sale</span>' : ''}
+              </div>
+              <h3 class="text-xl font-semibold mb-3">${product.name}</h3>
+              <p class="text-lg font-bold text-emerald-700 mb-5">₦${displayPrice.toLocaleString()}</p>
+              <div class="flex items-center gap-3">
+                <button class="btn-primary w-full rounded-2xl px-5 py-3 text-sm font-semibold" onclick="addToCart(${product.id})">Add to Cart</button>
+                <button class="border rounded-2xl p-3 text-xl text-gray-500 hover:text-emerald-600" onclick="event.stopPropagation(); toggleWishlistItem(${product.id})">❤️</button>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function filterCategory(category) {
+      document.querySelectorAll('.category-pill').forEach(btn => {
+        const selected = btn.dataset.category === category;
+        btn.classList.toggle('active', selected);
+      });
+      document.getElementById('selectedCategory').textContent = category;
+      applyFilters();
+    }
+
+    function applyFilters() {
+      const search = document.getElementById('searchInput').value.toLowerCase();
+      const category = document.querySelector('.category-pill.active')?.dataset.category || 'All';
+      const maxPrice = Number(document.getElementById('priceRange').value);
+      const sort = document.getElementById('sortSelect').value;
+
+      let filtered = products.filter(product => {
+        const matchesCategory = category === 'All' || product.category === category;
+        const matchesSearch = product.name.toLowerCase().includes(search);
+        const matchesPrice = product.price <= maxPrice;
+        return matchesCategory && matchesSearch && matchesPrice;
+      });
+
+      if (sort === 'low') filtered.sort((a, b) => a.price - b.price);
+      if (sort === 'high') filtered.sort((a, b) => b.price - a.price);
+      if (sort === 'name') filtered.sort((a, b) => a.name.localeCompare(b.name));
+
+      renderProducts(filtered);
+      document.getElementById('priceValue').textContent = maxPrice.toLocaleString();
+    }
+
+    function addToCart(id) {
+      const product = products.find(item => item.id === id);
+      const existing = cart.find(item => item.id === id);
+      if (existing) existing.qty += 1;
+      else cart.push({ ...product, qty: 1 });
+      saveCart();
+      updateCartCount();
+      showToast(`${product.name} added to cart`);
+    }
+
+    function saveCart() {
+      localStorage.setItem('kettsCart', JSON.stringify(cart));
+    }
+
+    function updateCartCount() {
+      const count = cart.reduce((sum, item) => sum + item.qty, 0);
+      const counter = document.getElementById('cart-count');
+      if (counter) counter.textContent = count;
+    }
+
+    function toggleWishlistItem(id) {
+      const existingIndex = wishlist.findIndex(item => item.id === id);
+      if (existingIndex > -1) wishlist.splice(existingIndex, 1);
+      else wishlist.push(products.find(item => item.id === id));
+      localStorage.setItem('kettsWishlist', JSON.stringify(wishlist));
+      updateWishlistCount();
+      showToast(existingIndex > -1 ? 'Removed from wishlist' : 'Added to wishlist');
+    }
+
+    function updateWishlistCount() {
+      const counter = document.getElementById('wishlist-count');
+      if (counter) counter.textContent = wishlist.length;
+    }
+
+    function openCart() {
+      document.getElementById('cart-modal').classList.remove('hidden');
+      renderCart();
+    }
+
+    function closeCart() {
+      document.getElementById('cart-modal').classList.add('hidden');
+    }
+
+    function renderCart() {
+      const container = document.getElementById('cart-items');
+      const totalDisplay = document.getElementById('cart-total');
+      if (!container) return;
+      if (!cart.length) {
+        container.innerHTML = '<p class="text-center text-gray-500 py-14">Your cart is empty.</p>';
+        totalDisplay.textContent = '0';
+        return;
+      }
+
+      let total = 0;
+      container.innerHTML = cart.map((item, index) => {
+        total += item.price * item.qty;
+        return `
+          <div class="flex items-center gap-4 py-4 border-b">
+            <img src="${item.img}" alt="${item.name}" class="h-20 w-20 rounded-3xl object-cover">
+            <div class="flex-1">
+              <p class="font-semibold">${item.name}</p>
+              <p class="text-green-600">₦${(item.price * item.qty).toLocaleString()}</p>
+              <div class="mt-2 flex items-center gap-2 text-sm text-gray-600">
+                <button onclick="changeQty(${index}, -1)" class="h-8 w-8 rounded-xl border">-</button>
+                <span>${item.qty}</span>
+                <button onclick="changeQty(${index}, 1)" class="h-8 w-8 rounded-xl border">+</button>
+              </div>
+            </div>
+            <button onclick="removeFromCart(${index})" class="text-red-500 text-xl">×</button>
+          </div>`;
+      }).join('');
+
+      totalDisplay.textContent = total.toLocaleString();
+    }
+
+    function changeQty(index, delta) {
+      cart[index].qty = Math.max(1, cart[index].qty + delta);
+      saveCart();
+      renderCart();
+      updateCartCount();
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      saveCart();
+      renderCart();
+      updateCartCount();
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.add('hidden');
+    }
+
+    function openCheckout() {
+      if (!cart.length) return showToast('Your cart is empty.');
+      closeCart();
+      document.getElementById('checkout-modal').classList.remove('hidden');
+    }
+
+    function submitOrder() {
+      const name = document.getElementById('customer-name').value.trim();
+      const phone = document.getElementById('customer-phone').value.trim();
+      const address = document.getElementById('customer-address').value.trim();
+      if (!name || !phone || !address) {
+        return showToast('Please complete your delivery details.');
+      }
+
+      let message = `*Ketts Stores Order*%0A`;
+      message += `Name: ${name}%0APhone: ${phone}%0AAddress: ${address}%0A%0A`;
+      const email = document.getElementById('customer-email').value.trim();
+      const city = document.getElementById('customer-city').value.trim();
+      const landmark = document.getElementById('customer-landmark').value.trim();
+      const notes = document.getElementById('customer-notes').value.trim();
+      const deliveryTime = document.getElementById('delivery-time').value;
+      const paymentMethod = document.getElementById('payment-method').value;
+
+      let total = 0;
+      cart.forEach(item => {
+        total += item.price * item.qty;
+        message += `${item.qty}x ${item.name} - ₦${(item.price * item.qty).toLocaleString()}%0A`;
+      });
+      message += `%0ATotal: ₦${total.toLocaleString()}%0A%0A`;
+      message += `*Delivery details*%0A`;
+      message += `Email: ${email || 'N/A'}%0A`;
+      message += `City/Area: ${city || 'N/A'}%0A`;
+      message += `Landmark: ${landmark || 'N/A'}%0A`;
+      if (notes) message += `Notes: ${notes}%0A`;
+      message += `Preferred Time: ${deliveryTime || 'Anytime'}%0A`;
+      message += `Payment: ${paymentMethod || 'Cash on Delivery'}%0A`;
+      const whatsAppNumber = '2349056412305';
+      window.open(`https://wa.me/${whatsAppNumber}?text=${message}`, '_blank');
+      cart = [];
+      saveCart();
+      updateCartCount();
+      closeModal('checkout-modal');
+    }
+
+    function showToast(text) {
+      const toast = document.createElement('div');
+      toast.className = 'fixed bottom-6 right-6 z-50 rounded-3xl bg-slate-900 px-5 py-3 text-sm text-white shadow-2xl';
+      toast.textContent = text;
+      document.body.appendChild(toast);
+      setTimeout(() => toast.remove(), 2400);
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      setActiveNav();
+      updateCartCount();
+      updateWishlistCount();
+      const activePage = document.querySelector('.page-title');
+      if (activePage) activePage.textContent = pageName === 'shop' ? 'Shop' : activePage.textContent;
+      if (pageName === 'shop') initShopPage();
+    });
+  </script>
+</body>
+</html>
